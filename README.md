@@ -61,3 +61,8 @@ This project consists of two HTML pages:
 
 - Dennis – WBS Software Engineering Class 01
 - Julien – WBS Software Engineering Class 01
+
+## Changelog
+
+- Julien Started with the 2xHTML and 2xJS files
+- Dennis Started making the Git Repo and invite Julien
