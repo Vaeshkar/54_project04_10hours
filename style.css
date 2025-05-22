@@ -50,3 +50,76 @@
     opacity: 0.15;
     filter: brightness(1.1) contrast(1.2);
 }
+
+#app:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 200%;
+    min-width: 200%;
+    background-image: url(https://poke-holo.b-cdn.net/foils/151/151-pattern-default.png);
+    background-size: 1200px 1200px;
+    filter: invert(1) brightness(2) saturate(.5) contrast(.125);
+    transform: translateX(-25%) translateY(-25%) rotate(25deg);
+    z-index: -2;
+    mix-blend-mode: overlay;
+    opacity: 1;
+}
+
+.inactive {
+    color: #3b4cca;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    background-color: #ffcc00;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.active {
+    color: #ffcc00;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    background-color: #3b4cca;
+    border-radius: 9999px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.perspective {
+  perspective: 1000px;
+}
+
+.card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card-container .card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-back-glare {
+  background-image: url('./images/pokeball-outer.webp');
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 35%;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+  
+  cursor: pointer;
+  filter: contrast(0.5) saturate(2);
+}

@@ -75,6 +75,13 @@ This project uses the following libraries and APIs:
 
 ## Changelog
 
+- Made Pokémon cards flippable on click to reveal a note-taking back side styled with a TCG card image.
+- Persisted personal notes per Pokémon in localStorage, synced with card back textarea.
+- Prevented accidental card flip when interacting with note fields using event bubbling guards.
+- Integrated Poké Ball glare overlay on card backs using layered blend mode styling.
+- Adjusted card flip logic for more intuitive interaction without hover triggers.
+- Restructured layout with `flex-grow` containers to keep footer anchored at the bottom.
+- Tuned background glare effect to remain subtle and not obscure card art.
 - Updated the Grid design and card positions
 - Applied gradient-clipped text styling with shadow overlays to Pokémon names and stats for visual emphasis.
 - Colored type badges with full Pokémon type color and black border for clarity and contrast.

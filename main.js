@@ -36,8 +36,7 @@ limitInput.addEventListener('keydown', (e) => {
   }
 });
 
-// Function: Button.click (add the amount of pokemon cards)
-button.addEventListener('click', () => {
+function fetchAndRenderPokemons() {
   button.disabled = true;
   button.classList.remove('bg-pokemon-yellow', 'hover:bg-pokemon-orange');
   button.classList.add('bg-gray-300', 'hover:bg-gray-300');
@@ -88,7 +87,11 @@ button.addEventListener('click', () => {
           <div class="zoom-wrapper cursor-pointer">
             <div class="tilt-card p-1 rounded-xl w-[285px] h-[400px] overflow-visible shadow-md relative" style="${bgStyle}; border: 12px solid #ffcc00; border-radius: 1.5rem; transform-style: preserve-3d;">
               <div class="grain-glitter-layer absolute inset-0 pointer-events-none z-0 rounded-xl"></div>
-              <div style="background-color: rgba(255, 255, 255, 0.25); transform: translateZ(8px);" class="rounded-lg w-full h-full p-4 flex flex-col items-center text-center shadow-lg" >
+              <div style="background-color: rgba(255, 255, 255, 0.25); transform: translateZ(8px);" class="rounded-lg w-full h-full p-4 flex flex-col items-center text-center shadow-lg relative" >
+                  <button class="catch-button absolute top-1 right-1 text-black text-xs font-bold px-1 py-1 z-2 flex flex-col items-center gap-0.5 cursor-pointer hover:scale-115 transform transition-all">
+                    <img src="./images/pokeball_icon.png" alt="Poké Ball" class="w-8 h-8" />
+                    Catch
+                  </button>
                   <img class="h-42 mb-2" src="${data.sprites.other["official-artwork"].front_default}" alt="${data.name}"/>
                   <h2 class="text-xl font-bold capitalize" style="background: linear-gradient(135deg, ${colors[0]}, ${colors[1] || colors[0]}); -webkit-background-clip: text; color: transparent; text-shadow: -1px -1px 0 black;">
                     ${data.name}
@@ -113,6 +116,27 @@ button.addEventListener('click', () => {
         // add the cards
         ul.appendChild(li);
         
+        li.querySelector('.catch-button').addEventListener('click', () => {
+          const caught = JSON.parse(localStorage.getItem('caughtPokemons')) || [];
+          const alreadyCaught = caught.find(p => p.id === data.id);
+          if (!alreadyCaught) {
+            caught.push({
+              id: data.id,
+              name: data.name,
+              image: data.sprites.other["official-artwork"].front_default,
+              types: data.types.map(t => t.type.name),
+              stats: data.stats.map(stat => ({
+                name: stat.stat.name,
+                value: stat.base_stat
+              }))
+            });
+            localStorage.setItem('caughtPokemons', JSON.stringify(caught));
+            alert(`${data.name} was added to your Pokédex!`);
+          } else {
+            alert(`${data.name} is already in your Pokédex.`);
+          }
+        });
+
         // Card titling
         // source: 
         // https://micku7zu.github.io/vanilla-tilt.js/
@@ -150,6 +174,30 @@ button.addEventListener('click', () => {
           clone.style.zIndex = '999';
 
           document.body.appendChild(clone);
+          const catchButton = clone.querySelector('.catch-button');
+          if (catchButton) {
+            catchButton.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const caught = JSON.parse(localStorage.getItem('caughtPokemons')) || [];
+              const alreadyCaught = caught.find(p => p.id === data.id);
+              if (!alreadyCaught) {
+                caught.push({
+                  id: data.id,
+                  name: data.name,
+                  image: data.sprites.other["official-artwork"].front_default,
+                  types: data.types.map(t => t.type.name),
+                  stats: data.stats.map(stat => ({
+                    name: stat.stat.name,
+                    value: stat.base_stat
+                  }))
+                });
+                localStorage.setItem('caughtPokemons', JSON.stringify(caught));
+                alert(`${data.name} was added to your Pokédex!`);
+              } else {
+                alert(`${data.name} is already in your Pokédex.`);
+              }
+            });
+          }
 
           requestAnimationFrame(() => {
             clone.style.transform = 'scale(1.5)';
@@ -185,4 +233,12 @@ button.addEventListener('click', () => {
       console.error(err);
       button.disabled = false;
     });
+}
+
+// Call fetchAndRenderPokemons on button click
+button.addEventListener('click', fetchAndRenderPokemons);
+
+// Call fetchAndRenderPokemons on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  fetchAndRenderPokemons();
 });
