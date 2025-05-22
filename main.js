@@ -82,6 +82,15 @@ const typeColors = {
   .catch(console.error);
 }); */
 
+
+const limitInput = document.getElementById('poke-limit');
+limitInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    button.click();
+  }
+});
+
 button.addEventListener('click', () => {
   button.disabled = true;
   button.classList.remove('bg-pokemon-yellow', 'hover:bg-pokemon-orange');
@@ -130,23 +139,25 @@ button.addEventListener('click', () => {
         );
         // inject HTML Semantic with pokemoncard styles and updated tilt structure
         li.innerHTML = `
-          <div class="tilt-card p-1 rounded-xl w-[285px] h-[400px] overflow-visible" style="${bgStyle}; border: 10px solid #ffcc00; border-radius: 1.5rem; transform-style: preserve-3d;">
-            <div style="background-color: rgba(255, 255, 255, 0.25); transform: translateZ(15px);" class="rounded-lg w-full h-full p-4 flex flex-col items-center text-center shadow-lg" >
-                <img class="w-24 h-24 mb-2" src="${data.sprites.front_default}" alt="${data.name}"/>
-                <h2 class="text-xl font-bold capitalize text-gray-800">${data.name}</h2>
-                <div class="flex justify-center gap-x-2 gap-y-1 flex-wrap w-full mt-2 mb-2">
-                  ${(data.types || []).map(t => `<span class="px-2 py-1 rounded-full text-xs text-white bg-gray-500">${t.type.name}</span>`).join('')}
-                </div>
-                <div class="text-xs text-left w-full mt-auto">
-                  ${data.stats.map(stat => `
-                    <div class="flex justify-between">
-                      <span class="capitalize">
-                        ${stat.stat.name}
-                      </span>
-                      <span>${stat.base_stat}</span>
-                    </div>
-                  `).join('')}
-                </div>
+          <div class="zoom-wrapper cursor-pointer">
+            <div class="tilt-card p-1 rounded-xl w-[285px] h-[400px] overflow-visible shadow-md" style="${bgStyle}; border: 10px solid #ffcc00; border-radius: 1.5rem; transform-style: preserve-3d;">
+              <div style="background-color: rgba(255, 255, 255, 0.25); transform: translateZ(15px);" class="rounded-lg w-full h-full p-4 flex flex-col items-center text-center shadow-lg" >
+                  <img class="h-44 mb-2" src="${data.sprites.other["official-artwork"].front_default}" alt="${data.name}"/>
+                  <h2 class="text-xl font-bold capitalize text-gray-800">${data.name}</h2>
+                  <div class="flex justify-center gap-x-2 gap-y-1 flex-wrap w-full mt-2 mb-2">
+                    ${(data.types || []).map(t => `<span class="px-2 py-1 rounded-full text-xs text-white bg-gray-500">${t.type.name}</span>`).join('')}
+                  </div>
+                  <div class="text-xs text-left w-full mt-auto">
+                    ${data.stats.map(stat => `
+                      <div class="flex justify-between">
+                        <span class="capitalize">
+                          ${stat.stat.name}
+                        </span>
+                        <span>${stat.base_stat}</span>
+                      </div>
+                    `).join('')}
+                  </div>
+              </div>
             </div>
           </div>
         `;
@@ -165,6 +176,55 @@ button.addEventListener('click', () => {
           gyroscope: true,
           reverse: true,
           perspective: 2000,
+        });
+
+        const wrapper = li.querySelector('.zoom-wrapper');
+
+        wrapper.addEventListener('click', (e) => {
+          e.stopPropagation();
+
+          // Remove any existing zoom clones
+          const existingZoom = document.querySelector('.zoom-clone');
+          if (existingZoom) existingZoom.remove();
+
+          const rect = wrapper.getBoundingClientRect();
+          const clone = wrapper.cloneNode(true);
+          clone.classList.add('zoom-clone');
+          clone.style.position = 'fixed';
+          clone.style.top = `${rect.top}px`;
+          clone.style.left = `${rect.left}px`;
+          clone.style.width = `${rect.width}px`;
+          clone.style.height = `${rect.height}px`;
+          clone.style.margin = '0';
+          clone.style.transformOrigin = 'center center';
+          clone.style.transition = 'transform 0.3s ease, top 0.3s ease, left 0.3s ease';
+          clone.style.zIndex = '999';
+
+          document.body.appendChild(clone);
+
+          requestAnimationFrame(() => {
+            clone.style.transform = 'scale(1.5)';
+          });
+
+          const closeZoom = (event) => {
+            if (!clone.contains(event.target)) {
+              clone.remove();
+              document.removeEventListener('click', closeZoom);
+            }
+          };
+
+          document.addEventListener('click', closeZoom);
+
+          VanillaTilt.init(clone.querySelectorAll(".tilt-card"), {
+            max: 15,
+            speed: 200,
+            glare: true,
+            "max-glare": 0.75,
+            easing: "cubic-bezier(.03,.98,.52,.99)",
+            gyroscope: true,
+            reverse: true,
+            perspective: 2000,
+          });
         });
       });
 

@@ -6,44 +6,45 @@
     <title>🐭⚡ Pokédex Diary</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
-  <body class="max-w-[900px] m-auto bg-pokemon-darkblue">
+  <body class="w-full m-auto bg-pokemon-darkblue">
     <header>
         <nav>
   <div class="topnav">
   <a class="active" href="#home">Homepage</a>
   <a href="#about">Pokédex</a>
-
-  <div class="search-container">
-    <form action="/action_page.php">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
-  </div>
-</div>
-</nav>
-    </header>
-    <div class="container mt-5 mx-auto">
-      <div
-        class="bg-white p-9 rounded-lg shadow-md w-full flex flex-col">
-        <h1 class="text-2xl text-center font-bold text-gray-800 mb-4">
-          Welcome to our project using Pokémon APIs
-        </h1>
-        <input
-          id="poke-limit"
-          type="number"
-          min="1"
-          max="151"
-          value="12"
-          class="border-2 mb-4 p-2 rounded text-center w-full"
-          placeholder="How many Pokémon?" />
-        <button
-          id="fetch-poke"
-          class="bg-green-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded w-full mb-4 cursor-pointer">
-          Catch'em all
-        </button>
-        <ul id="todo-list" class="flex-1 overflow-y-auto grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3"></ul>
-      </div>
+  <main class="max-w-[900px]">
+    <div class="search-container">
+      <form id="fetch-form">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
     </div>
+  </div>
+  </nav>
+      </header>
+      <div class="container mt-5 mx-auto">
+        <div
+          class="bg-white p-9 rounded-lg shadow-md w-full flex flex-col">
+          <h1 class="text-2xl text-center font-bold text-gray-800 mb-4">
+            Welcome to our project using Pokémon APIs
+          </h1>
+          <input
+            id="poke-limit"
+            type="number"
+            min="1"
+            max="151"
+            value="12"
+            class="border-2 mb-4 p-2 rounded text-center w-full"
+            placeholder="How many Pokémon?" />
+          <button
+            id="fetch-poke"
+            class="bg-green-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded w-full mb-4 cursor-pointer">
+            Catch'em all
+          </button>
+          <ul id="todo-list" class="flex-1 overflow-y-auto grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"></ul>
+        </div>
+      </div>
+    </main>
     <script src="./main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.3/dist/vanilla-tilt.min.js"></script>
     <style>
@@ -63,6 +64,20 @@
       .tilt-card .js-tilt-glare-inner {
         background-color: rgba(59, 76, 202, 0.75);
         border-radius: 0.75rem !important;
+      }
+
+      .zoom-wrapper {
+        transform: scale(0.95);
+      }
+
+      .zoom-wrapper.zoomed {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.5);
+        transform-origin: center ;
+        z-index: 100;
+        transition: transform 0.3s ease;
       }
     </style>
   </body>
