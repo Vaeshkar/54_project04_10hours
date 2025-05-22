@@ -140,8 +140,9 @@ button.addEventListener('click', () => {
         // inject HTML Semantic with pokemoncard styles and updated tilt structure
         li.innerHTML = `
           <div class="zoom-wrapper cursor-pointer">
-            <div class="tilt-card p-1 rounded-xl w-[285px] h-[400px] overflow-visible shadow-md" style="${bgStyle}; border: 10px solid #ffcc00; border-radius: 1.5rem; transform-style: preserve-3d;">
-              <div style="background-color: rgba(255, 255, 255, 0.25); transform: translateZ(15px);" class="rounded-lg w-full h-full p-4 flex flex-col items-center text-center shadow-lg" >
+            <div class="tilt-card p-1 rounded-xl w-[285px] h-[400px] overflow-visible shadow-md relative" style="${bgStyle}; border: 10px solid #ffcc00; border-radius: 1.5rem; transform-style: preserve-3d;">
+              <div class="grain-glitter-layer absolute inset-0 pointer-events-none z-0 rounded-xl"></div>
+              <div style="background-color: rgba(255, 255, 255, 0.25); transform: translateZ(8px);" class="rounded-lg w-full h-full p-4 flex flex-col items-center text-center shadow-lg" >
                   <img class="h-44 mb-2" src="${data.sprites.other["official-artwork"].front_default}" alt="${data.name}"/>
                   <h2 class="text-xl font-bold capitalize text-gray-800">${data.name}</h2>
                   <div class="flex justify-center gap-x-2 gap-y-1 flex-wrap w-full mt-2 mb-2">
