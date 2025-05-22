@@ -75,6 +75,7 @@ This project uses the following libraries and APIs:
 
 ## Changelog
 
+- Updated the Grid design and card positions
 - Applied gradient-clipped text styling with shadow overlays to Pokémon names and stats for visual emphasis.
 - Colored type badges with full Pokémon type color and black border for clarity and contrast.
 - Added a darker gradient background to the stats section for improved readability.
