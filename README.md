@@ -62,7 +62,22 @@ This project consists of two HTML pages:
 - Dennis – WBS Software Engineering Class 01
 - Julien – WBS Software Engineering Class 01
 
+## 📦 Dependencies
+
+This project uses the following libraries and APIs:
+
+- [TailwindCSS](https://tailwindcss.com/) – Utility-first CSS framework for styling.
+- [VanillaTilt.js](https://micku7zu.github.io/vanilla-tilt.js/) – Adds 3D tilt and glare effects to cards.
+- [PokéAPI](https://pokeapi.co/) – Public API for Pokémon data.
+- [DOM API](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) – For dynamic rendering and interactions.
+- [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) – For saving caught Pokémon and notes in localStorage.
+- [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) – To retrieve data from PokéAPI.
+
 ## Changelog
 
+- Dennis and Julien implemented dynamic card rendering using the PokéAPI.
+- Introduced randomized Pokémon fetch with visual styling based on type.
+- Added 3D parallax tilt effect with layered `translateZ` visuals.
+- Refined card layout with strict sizing and responsive grid structure.
 - Julien Started with the 2xHTML and 2xJS files
 - Dennis Started making the Git Repo and invite Julien

@@ -6,7 +6,7 @@
     <title>🐭⚡ Pokédex Diary</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
-  <body class="max-w-[900px] m-auto bg-[#253338]">
+  <body class="max-w-[900px] m-auto bg-pokemon-darkblue">
     <header>
         <nav>
   <div class="topnav">
@@ -24,23 +24,46 @@
     </header>
     <div class="container mt-5 mx-auto">
       <div
-        class="bg-white p-9 rounded-lg shadow-md w-full h-[85vh] flex flex-col"
-      >
+        class="bg-white p-9 rounded-lg shadow-md w-full flex flex-col">
         <h1 class="text-2xl text-center font-bold text-gray-800 mb-4">
           Welcome to our project using Pokémon APIs
         </h1>
+        <input
+          id="poke-limit"
+          type="number"
+          min="1"
+          max="151"
+          value="12"
+          class="border-2 mb-4 p-2 rounded text-center w-full"
+          placeholder="How many Pokémon?" />
         <button
           id="fetch-poke"
-          class="bg-green-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded w-full mb-4 cursor-pointer"
-        >
+          class="bg-green-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded w-full mb-4 cursor-pointer">
           Catch'em all
         </button>
-        <ul id="todo-list" class="flex-1 overflow-y-auto space-y-2"></ul>
+        <ul id="todo-list" class="flex-1 overflow-y-auto grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3"></ul>
       </div>
     </div>
     <script src="./main.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.3/dist/vanilla-tilt.min.js"></script>
+    <style>
+      .bg-pokemon-darkblue {background-color: #253338; }
+      .bg-pokemon-blue { background-color: #3b4cca; } 
+      .bg-pokemon-yellow { background-color: #ffcc00; }   
+      .hover\:bg-pokemon-orange:hover { background-color: #ff9900; } 
+      .bg-gray-300 { background-color: #d1d5db; }
+      .hover\:bg-gray-300:hover { background-color: #d1d5db; }
+
+      /* styles for the glare cards */
+      .tilt-card .js-tilt-glare {
+        border-radius: 0.75rem !important;
+        overflow: hidden;
+      }
+
+      .tilt-card .js-tilt-glare-inner {
+        background-color: rgba(59, 76, 202, 0.75);
+        border-radius: 0.75rem !important;
+      }
+    </style>
   </body>
 </html>
-
-
