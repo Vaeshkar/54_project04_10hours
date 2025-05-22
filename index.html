@@ -7,23 +7,21 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style.css">
   </head>
-  <body class="w-full m-auto bg-pokemon-darkblue">
-    <header>
-        <nav>
-  <div class="topnav">
-  <a class="active" href="#home">Homepage</a>
-  <a href="#about">Pokédex</a>
-  <main class="max-w-[900px]">
-    <div class="search-container">
-      <form id="fetch-form">
-        <input type="text" placeholder="Search.." name="search">
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
-    </div>
-  </div>
-  </nav>
-      </header>
-      <div class="container mt-5 mx-auto">
+  <body id="home" class="w-full m-auto bg-pokemon-darkblue">
+    <header class="max-w-[900px] m-auto bg-white mb-5 rounded-b-lg p-6">
+        <nav class="flex justify-between gap-4">
+          <a class="active" href="#home" target="_self">🐭⚡ Pokédex Diary</a> | 
+          <a href="./pokédex.html">🦊⚡ Pokédex</a> | 
+          <div class="search-container">
+            <form id="fetch-form" class="">
+              <input type="text" placeholder="Search for Pokémon..." name="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+        </nav>
+    </header>
+    <main class="max-w-[900px] m-auto">
+      <div class="container mx-auto">
         <div
           class="bg-white p-9 rounded-lg shadow-md w-full flex flex-col">
           <h1 class="text-2xl text-center font-bold text-gray-800 mb-4">
@@ -46,6 +44,12 @@
         </div>
       </div>
     </main>
+    <footer class="max-w-[900px] bg-white rounded-t-lg m-auto mt-4 p-6">
+      <div class="wrapper flex flex-col text-center gap-2">
+        <p>&copy; 2025 | 🐭⚡ Pokédex Diary / WBS Coding School – Project 04</p>
+        <p>Made with ❤️ and by hand from: <a class="pokemon-blue" href="https://github.com/ChaOscDelEch" target="_blank">Julien</a> and <a class="pokemon-blue" href="http://github.com/Vaeshkar" target="_blank">Dennis</a>.</p>
+      </div>
+    </footer>
     <script src="./main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.3/dist/vanilla-tilt.min.js"></script>
   

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🐭⚡ Pokédex Diary</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body id="home" class="w-full m-auto bg-pokemon-darkblue">
+    <header class="max-w-[900px] m-auto bg-white mb-5 rounded-b-lg p-6">
+        <nav class="flex justify-between gap-4">
+          <a class="active" href="./index.html" target="_self">🐭⚡ Pokédex Diary</a> | 
+          <a href="./pokédex.html">🦊⚡ Pokédex</a> | 
+          <div class="search-container">
+            <form id="fetch-form" class="">
+              <input type="text" placeholder="Search for Pokémon..." name="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+        </nav>
+    </header>
+    <main class="max-w-[900px] m-auto">
+      <div class="container mx-auto">
+        <div
+          class="bg-white p-9 rounded-lg shadow-md w-full flex flex-col">
+          <h1 class="text-2xl text-center font-bold text-gray-800 mb-4">
+            Welcome to your Pokédex Page
+          </h1>
+          <input
+            id="poke-limit"
+            type="number"
+            min="1"
+            max="151"
+            value="12"
+            class="border-2 mb-4 p-2 rounded text-center w-full"
+            placeholder="How many Pokémon?" />
+          <button
+            id="fetch-poke"
+            class="bg-green-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded w-full mb-4 cursor-pointer">
+            Catch'em all
+          </button>
+          <ul id="todo-list" class="flex-1 overflow-y-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"></ul>
+        </div>
+      </div>
+    </main>
+    <footer class="max-w-[900px] bg-white rounded-t-lg m-auto mt-4 p-6">
+      <div class="wrapper flex flex-col text-center gap-2">
+        <p>&copy; 2025 | 🐭⚡ Pokédex Diary / WBS Coding School – Project 04</p>
+        <p>Made with ❤️ and by hand from: <a class="pokemon-blue" href="https://github.com/ChaOscDelEch" target="_blank">Julien</a> and <a class="pokemon-blue" href="http://github.com/Vaeshkar" target="_blank">Dennis</a>.</p>
+      </div>
+    </footer>
+    <script src="./main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.3/dist/vanilla-tilt.min.js"></script>
+  
+  </body>
+</html>
