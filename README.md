@@ -75,6 +75,10 @@ This project uses the following libraries and APIs:
 
 ## Changelog
 
+- Applied gradient-clipped text styling with shadow overlays to Pokémon names and stats for visual emphasis.
+- Colored type badges with full Pokémon type color and black border for clarity and contrast.
+- Added a darker gradient background to the stats section for improved readability.
+- Final visual tuning with layered effects, shadows, and color cohesion for card polish.
 - Integrated glitter and grain texture overlay using separate CSS background layers.
 - Moved inline body background styles into external `style.css` for cleaner control.
 - Tuned glitter/grain effect visibility with adjusted opacity and filter values.

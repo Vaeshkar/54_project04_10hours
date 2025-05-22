@@ -16,6 +16,16 @@
     border-radius: 0.75rem !important;
 }
 
+.tilt-card::after {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border: 1px solid rgba(0, 0, 0, 0.20); /* subtle black border */
+  border-radius: 1.5rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .zoom-wrapper {
     transform: scale(0.95);
 }
