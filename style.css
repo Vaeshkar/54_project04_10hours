@@ -1,0 +1,40 @@
+.bg-pokemon-darkblue {background-color: #253338; }
+.bg-pokemon-blue { background-color: #3b4cca; } 
+.bg-pokemon-yellow { background-color: #ffcc00; }   
+.hover\:bg-pokemon-orange:hover { background-color: #ff9900; } 
+.bg-gray-300 { background-color: #d1d5db; }
+.hover\:bg-gray-300:hover {         background-color: #d1d5db; }
+
+/* styles for the glare cards */
+.tilt-card .js-tilt-glare {
+    border-radius: 0.75rem !important;
+    overflow: hidden;
+}
+
+.tilt-card .js-tilt-glare-inner {
+    background-color: rgba(59, 76, 202, 0.75);
+    border-radius: 0.75rem !important;
+}
+
+.zoom-wrapper {
+    transform: scale(0.95);
+}
+
+.zoom-wrapper.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5);
+    transform-origin: center ;
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.grain-glitter-layer {
+    background-image: url('./images/glitter.png'), url('./images/grain.webp');
+    background-size: 100%, cover;
+    background-repeat: repeat;
+    background-blend-mode: screen, multiply;
+    opacity: 0.15;
+    filter: brightness(1.1) contrast(1.2);
+}

@@ -75,6 +75,9 @@ This project uses the following libraries and APIs:
 
 ## Changelog
 
+- Integrated glitter and grain texture overlay using separate CSS background layers.
+- Moved inline body background styles into external `style.css` for cleaner control.
+- Tuned glitter/grain effect visibility with adjusted opacity and filter values.
 - Added click-to-zoom effect for Pokémon cards with smooth scaling and tilt preservation.
 - Improved zoom transition by scaling cards from their original position using `getBoundingClientRect`.
 - Introduced solid white background behind card content to prevent layering and transparency issues.
