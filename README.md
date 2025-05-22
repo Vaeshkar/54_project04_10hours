@@ -75,6 +75,12 @@ This project uses the following libraries and APIs:
 
 ## Changelog
 
+- Added click-to-zoom effect for Pokémon cards with smooth scaling and tilt preservation.
+- Improved zoom transition by scaling cards from their original position using `getBoundingClientRect`.
+- Introduced solid white background behind card content to prevent layering and transparency issues.
+- Enabled pressing Enter in the input field to trigger fetch.
+- Added pointer cursor on hover to indicate card interactivity.
+- Applied subtle drop shadow to all Pokémon cards for visual depth.
 - Dennis and Julien implemented dynamic card rendering using the PokéAPI.
 - Introduced randomized Pokémon fetch with visual styling based on type.
 - Added 3D parallax tilt effect with layered `translateZ` visuals.
