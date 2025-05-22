@@ -26,9 +26,9 @@
   z-index: 1;
 }
 
-.zoom-wrapper {
+/* .zoom-wrapper {
     transform: scale(0.95);
-}
+} */
 
 .zoom-wrapper.zoomed {
     position: fixed;
