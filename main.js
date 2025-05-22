@@ -2,10 +2,10 @@ const button = document.getElementById('fetch-poke');
 const ul = document.getElementById('todo-list');
 // Path to resource
 const path = 'https://pokeapi.co/api/v2/pokemon';
+// Pokemon ID
 let pokeId = 1;
-/* let counter = 0;
-const limit = 150; */
 
+// Pokemon BG-Colors by element power.
 const typeColors = {
   normal: '#A8A77A',
   fire: '#EE8130',
@@ -27,62 +27,7 @@ const typeColors = {
   fairy: '#D685AD',
 };
 
-// Event listener on button
-/* button.addEventListener('click', () => {
-  // Disabling button while we fetch to avoid duplicates
-  button.disabled = true;
-  button.classList.remove('bg-green-500', 'hover:bg-red-500');
-  button.classList.add('bg-gray-300', 'hover:bg-gray-300');
-  // By default, fetch issues a GET request, just like any browser window
-  // when acceessing a web page
-  // fetch() returns a promise, an object that has a .then() method that will be called once
-  // the request has been fulfilled
-  fetch(`${path}/${pokeId}`)
-  .then((res) => {
-    // this .then method, receives a function as an argument, this function when called
-    // has access to the response object!
-    // You can check if the response status is OK
-    if (!res.ok) throw new Error('Something went wrong');
-    // Or access the JSON data in the response
-    return res.json(); // Response.json() returns, incidentally, a promise
-  })
-  .then((data) => {
-    // Hence the double .then
-    // But here you already have access to the data!
-    console.log(data);
-    const li = document.createElement('li');
-    li.classList.add(
-      'flex',
-      'items-center',
-      'justify-around',
-      'p-2',
-      'bg-gray-100',
-      'rounded',
-    );
-    li.innerHTML = `<div class='capitalize'>${data.species.name}</div><img src='${data.sprites.front_default}'/>`;
-    ul.appendChild(li);
-    li.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    // Increasing counter
-    pokeId++;
-    counter++;
-    // check if the counter works
-    // console.log(counter);
-    // Check if the limit is reached, if yes disable the button
-    if (counter === limit) {
-      button.disabled = true;
-      button.classList.remove('bg-green-500', 'hover:bg-red-500', 'cursor-pointer', 'hover:bg-gray-300');
-      button.classList.add('bg-gray-500', 'text-gray-400', 'cursor-not-allowed')
-    } else {
-      // Enabling  button while we fetch to avoid duplicates
-      button.classList.remove('bg-gray-300', 'hover:bg-gray-300');
-      button.classList.add('bg-green-500', 'hover:bg-red-500');
-      button.disabled = false;
-    }
-  })
-  .catch(console.error);
-}); */
-
-
+// Function: LimitInput (change the limit and press enter to start)
 const limitInput = document.getElementById('poke-limit');
 limitInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
@@ -91,6 +36,7 @@ limitInput.addEventListener('keydown', (e) => {
   }
 });
 
+// Function: Button.click (add the amount of pokemon cards)
 button.addEventListener('click', () => {
   button.disabled = true;
   button.classList.remove('bg-pokemon-yellow', 'hover:bg-pokemon-orange');
@@ -134,7 +80,7 @@ button.addEventListener('click', () => {
           'flex',
           'items-center',
           'justify-around',
-          'p-2',
+          'py-2',
           'rounded',
         );
         // inject HTML Semantic with pokemoncard styles and updated tilt structure
