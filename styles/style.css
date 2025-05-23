@@ -137,24 +137,11 @@
   transform: rotateY(180deg);
 }
 
-/* .card-back-glare {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url('../images/pokeball-outer.webp');
-  background-repeat: repeat;
-  background-size: 55%;
-  opacity: 0.35;
-  mix-blend-mode: overlay;
-  animation: slow-rotate 50s linear infinite;
-  border-radius: inherit;
-}
- */
 .card-back-glare::before {
   content: '';
   position: absolute;
   inset: -20%;
-  background: url('/images/holo-dank2.webp') center/cover no-repeat;
+  background: url('../images/holo-dank2.webp') center/cover no-repeat;
   animation: spin 20s linear infinite;
   transform: translate3d(0, 0, -50px);
   pointer-events: none;
