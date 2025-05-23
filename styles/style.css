@@ -28,6 +28,22 @@
   z-index: 1;
 }
 
+.tilt-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('../images/holo-dank2.webp');
+  background-size: cover;
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
+  opacity: 0.45;
+  filter: brightness(2) contrast(1.5) saturate(2.5);
+  transform: translateZ(8px);
+  /* z-index: 10; */
+  border-radius: inherit;
+}
+
 /* .zoom-wrapper {
     transform: scale(0.95);
 } */
@@ -43,13 +59,26 @@
 }
 
 .grain-glitter-layer {
-    background-image: url('/images/glitter.png'), url('/images/grain.webp');
+    background-image: url('../images/glitter.png'), url('../images/grain.webp');
     background-size: 100%, cover;
     background-repeat: repeat;
-    background-blend-mode: screen, multiply;
+    background-blend-mode: screen, overlay;
     opacity: 0.15;
     filter: brightness(1.1) contrast(1.2);
 }
+
+/* .extra-glitter-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  border-radius: 0.75rem;
+  background-image: url('../images/holo-dank2.jpeg');
+  background-size: cover;
+  mix-blend-mode: none;
+  opacity: 0.7;
+  filter: brightness(1.5) contrast(1.2) saturate(1.8);
+} */
 
 #app:before {
     content: "";
@@ -113,7 +142,7 @@
 }
 
 .card-back-glare {
-  background-image: url('/images/pokeball-outer.webp');
+  background-image: url('../images/pokeball-outer.webp');
   background-repeat: repeat;
   background-position: center;
   background-size: 35%;
