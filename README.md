@@ -73,6 +73,12 @@ This project uses the following libraries and APIs:
 - [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) – For saving caught Pokémon and notes in localStorage.
 - [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) – To retrieve data from PokéAPI.
 
+---
+
+## 📝 Changelog
+
+- Refactored pokedex card rendering into `renderPokedexCard(pokemon)` for modularity.
+- Centralized Pokémon type color logic with shared `getPokemonColors()` helper function.
 - Slimmed down stored Pokémon data using only essential fields (id, name, image, types, stats), enabling storage of all 1302 Pokémon under 2.5MB localStorage budget.
 - Added 'How to' collapsible section with a click function
 - Small TailwindCSS class updates for Mobile
