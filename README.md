@@ -77,6 +77,8 @@ This project uses the following libraries and APIs:
 
 ## 📝 Changelog
 
+- Added a Favicon
+- Added disko on the backcard: rotating glitter
 - Refactored pokedex card rendering into `renderPokedexCard(pokemon)` for modularity.
 - Centralized Pokémon type color logic with shared `getPokemonColors()` helper function.
 - Slimmed down stored Pokémon data using only essential fields (id, name, image, types, stats), enabling storage of all 1302 Pokémon under 2.5MB localStorage budget.
