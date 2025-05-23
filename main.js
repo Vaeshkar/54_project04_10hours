@@ -51,6 +51,75 @@ function applyTiltEffect(elements) {
   });
 }
 
+// Function: setupZoomEffect (makes a clone of the card and animate zooms it)
+function setupZoomEffect(wrapper, data) {
+  wrapper.addEventListener('click', (e) => {
+    e.stopPropagation();
+
+    const existingZoom = document.querySelector('.zoom-clone');
+    if (existingZoom) existingZoom.remove();
+
+    const rect = wrapper.getBoundingClientRect();
+    const clone = wrapper.cloneNode(true);
+    clone.classList.add('zoom-clone');
+    clone.style.position = 'fixed';
+    clone.style.top = `${rect.top}px`;
+    clone.style.left = `${rect.left}px`;
+    clone.style.width = `${rect.width}px`;
+    clone.style.height = `${rect.height}px`;
+    clone.style.margin = '0';
+    clone.style.transformOrigin = 'center center';
+    clone.style.transition = 'transform 0.3s ease, top 0.3s ease, left 0.3s ease';
+    clone.style.zIndex = '999';
+
+    document.body.appendChild(clone);
+    clone.addEventListener('click', (event) => {
+      event.stopPropagation();
+      clone.remove();
+    });
+
+    const zoomInner = clone.querySelector('[style*="translateZ"]');
+    if (zoomInner) {
+      zoomInner.style.transform = `translateZ(${translateZValue * 4}px)`;
+    }
+
+    const catchButton = clone.querySelector('.catch-button');
+    if (catchButton) {
+      catchButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        catchPokemon(data);
+      });
+    }
+
+    requestAnimationFrame(() => {
+      clone.style.transform = 'scale(1.5)';
+    });
+
+    const closeZoom = (event) => {
+      if (!clone.contains(event.target)) {
+        clone.style.transform = 'scale(1)';
+        setTimeout(() => {
+          clone.remove();
+        }, 300);
+        document.removeEventListener('click', closeZoom);
+      }
+    };
+
+    document.addEventListener('click', closeZoom);
+    applyTiltEffect(clone.querySelectorAll(".tilt-card"));
+  });
+}
+
+// Helper function to get colors and gradient for pokemon types
+function getPokemonColors(types) {
+  const typeNames = types.map(t => t.type.name);
+  const colors = typeNames.map(type => typeColors[type]);
+  const gradient = colors.length === 1
+    ? `background: linear-gradient(135deg, ${colors[0]} 0%, rgba(255, 255, 255, 1) 100%)`
+    : `background: linear-gradient(135deg, ${colors[0]}, ${colors[1]})`;
+  return { colors, gradient };
+}
+
 // Function: catchPokemon (saves slimData on the localStorage)
 function catchPokemon(data) {
   const caught = JSON.parse(localStorage.getItem('caughtPokemons')) || [];
@@ -90,15 +159,7 @@ function renderPokemons(pokemonArray) {
   ul.innerHTML = '';
 
   pokemonArray.forEach(data => {
-    const typeNames = data.types.map(t => t.type.name);
-    const colors = typeNames.map(type => typeColors[type]);
-
-    let bgStyle = '';
-    if (colors.length === 1) {
-      bgStyle = `background: linear-gradient(135deg, ${colors[0]} 0%, rgba(255, 255, 255, 1) 100%)`;
-    } else {
-      bgStyle = `background: linear-gradient(135deg, ${colors[0]}, ${colors[1]})`;
-    }
+    const { colors, gradient: bgStyle } = getPokemonColors(data.types);
 
     const li = document.createElement('li');
     li.classList.add(
@@ -155,65 +216,7 @@ function renderPokemons(pokemonArray) {
     // Click Event
     // Source: https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation
     // Variations: preventDefault() or stopImmediateProgastion()
-    wrapper.addEventListener('click', (e) => {
-      e.stopPropagation();
-
-      // Remove any existing zoom clones
-      const existingZoom = document.querySelector('.zoom-clone');
-      if (existingZoom) existingZoom.remove();
-
-      // Builds the new clone
-      const rect = wrapper.getBoundingClientRect();
-      const clone = wrapper.cloneNode(true);
-      clone.classList.add('zoom-clone');
-      clone.style.position = 'fixed';
-      clone.style.top = `${rect.top}px`;
-      clone.style.left = `${rect.left}px`;
-      clone.style.width = `${rect.width}px`;
-      clone.style.height = `${rect.height}px`;
-      clone.style.margin = '0';
-      clone.style.transformOrigin = 'center center';
-      clone.style.transition = 'transform 0.3s ease, top 0.3s ease, left 0.3s ease';
-      clone.style.zIndex = '999';
-      // Adds the new clone
-      document.body.appendChild(clone);
-      // Click Event
-      clone.addEventListener('click', (event) => {
-        event.stopPropagation();
-        clone.remove();
-      });
-      // Increase the translateZ for the zoomed cards, for a more dept effect
-      const zoomInner = clone.querySelector('[style*="translateZ"]');
-      if (zoomInner) {
-        zoomInner.style.transform = `translateZ(${translateZValue * 4}px)`;
-      }
-      // reactivate the catch button
-      const catchButton = clone.querySelector('.catch-button');
-      if (catchButton) {
-        catchButton.addEventListener('click', (e) => {
-          e.stopPropagation();
-          catchPokemon(data);
-        });
-      }
-
-      requestAnimationFrame(() => {
-        clone.style.transform = 'scale(1.5)';
-      });
-
-      const closeZoom = (event) => {
-        if (!clone.contains(event.target)) {
-          clone.style.transform = 'scale(1)';
-          setTimeout(() => {
-            clone.remove();
-          }, 300); // match the transition duration
-          document.removeEventListener('click', closeZoom);
-        }
-      };
-
-      document.addEventListener('click', closeZoom);
-
-      applyTiltEffect(clone.querySelectorAll(".tilt-card"));
-    });
+    setupZoomEffect(wrapper, data);
   });
 
   resetFetchButtonStyle();

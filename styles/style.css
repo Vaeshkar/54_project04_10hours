@@ -43,7 +43,7 @@
 }
 
 .grain-glitter-layer {
-    background-image: url('./images/glitter.png'), url('./images/grain.webp');
+    background-image: url('/images/glitter.png'), url('/images/grain.webp');
     background-size: 100%, cover;
     background-repeat: repeat;
     background-blend-mode: screen, multiply;
@@ -68,7 +68,6 @@
 }
 
 .inactive {
-
     color: rgba(59, 76, 202, 0.4);
     font-weight: 700;
     padding: 1rem 2rem;
@@ -81,7 +80,6 @@
 }
 
 .active {
-
     color: #ffcc00;
     font-weight: 700;
     padding: 1rem 2rem;
@@ -115,7 +113,7 @@
 }
 
 .card-back-glare {
-  background-image: url('./images/pokeball-outer.webp');
+  background-image: url('/images/pokeball-outer.webp');
   background-repeat: repeat;
   background-position: center;
   background-size: 35%;
