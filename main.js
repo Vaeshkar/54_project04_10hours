@@ -174,7 +174,6 @@ function renderPokemons(pokemonArray) {
       <div class="zoom-wrapper cursor-pointer">
         <div class="tilt-card p-1 rounded-xl w-[285px] h-[400px] overflow-visible shadow-md relative" style="${bgStyle}; border: 12px solid #ffcc00; border-radius: 1.5rem; transform-style: preserve-3d; transform: perspective(1000px);">
           <div class="grain-glitter-layer absolute inset-0 pointer-events-none z-0 rounded-xl"></div>
-
               <div style="background-color: rgba(255, 255, 255, 0.25); transform: translateZ(${translateZValue}px);" class="rounded-lg w-full h-full p-4 flex flex-col items-center text-center shadow-lg relative" >
               <button class="catch-button absolute top-1 right-1 text-black text-xs font-bold px-1 py-1 z-2 flex flex-col items-center gap-0.5 cursor-pointer hover:scale-115 transform transition-all">
                 <img src="./images/pokeball_icon.png" alt="Poké Ball" class="w-8 h-8" />
@@ -238,7 +237,7 @@ function fetchAndRenderPokemons() {
       return res.json();
     })
     .then(() => {
-      const maxId = 1302; // Max Pokemons from https://pokeapi.co/ – Timestamp: 03.2025
+      const maxId = 1017; // Max safe Pokemons from https://pokeapi.co/ – Timestamp: 03.2025
       const requests = [];
       for (let i = 0; i < limit; i++) {
         const randomId = Math.floor(Math.random() * maxId) + 1;

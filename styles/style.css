@@ -7,10 +7,19 @@
 .bg-gray-300 { background-color: #d1d5db; }
 .hover\:bg-gray-300:hover {         background-color: #d1d5db; }
 
+@keyframes slow-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* styles for the glare cards */
 .tilt-card .js-tilt-glare {
     border-radius: 0.75rem !important;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .tilt-card .js-tilt-glare-inner {
@@ -58,11 +67,11 @@
 }
 
 .grain-glitter-layer {
-    background-image: url('../images/grain.webp'), url('../images/holo-dank2.webp');
+    background-image: url('../images/holo-dank2.webp'), url('../images/grain.webp');
     background-size: 100%, cover;
     background-repeat: repeat;
     background-blend-mode: screen, overlay;
-    transform: translateZ(10px);
+    transform: translateZ(18px);
     opacity: 0.25;
     filter: brightness(1.1) contrast(1.2);
 }
@@ -84,7 +93,6 @@
 }
 
 .inactive {
-
     color: rgba(59, 76, 202, 0.4);
     font-weight: 700;
     padding: 1rem 2rem;
@@ -129,14 +137,28 @@
   transform: rotateY(180deg);
 }
 
-.card-back-glare {
+/* .card-back-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background-image: url('../images/pokeball-outer.webp');
   background-repeat: repeat;
-  background-position: center;
-  background-size: 35%;
-  opacity: 0.4;
-  mix-blend-mode: screen;
-  
-  cursor: pointer;
-  filter: contrast(0.5) saturate(2);
+  background-size: 55%;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  animation: slow-rotate 50s linear infinite;
+  border-radius: inherit;
+}
+ */
+.card-back-glare::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background: url('/images/holo-dank2.webp') center/cover no-repeat;
+  animation: spin 20s linear infinite;
+  transform: translate3d(0, 0, -50px);
+  pointer-events: none;
+  animation: slow-rotate 40s linear infinite;
+  mix-blend-mode: color-dodge;
+  overflow: visible;
 }
