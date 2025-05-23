@@ -281,3 +281,34 @@ document.getElementById('enable-gyro').addEventListener('click', async () => {
     alert("Your device or browser does not support motion permissions.");
   }
 });
+
+// Activer le formulaire de recherche
+const searchForm = document.getElementById('fetch-form');
+searchForm.classList.remove('cursor-not-allowed');
+searchForm.querySelector('input').classList.remove('cursor-not-allowed');
+searchForm.parentElement.classList.remove('opacity-50', 'cursor-not-allowed');
+
+// Submit of searchbar
+searchForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const query = searchForm.search.value.trim().toLowerCase();
+
+  if (!query) {
+    // If research is empty → same logic than "Catch'em all" fetch
+    fetchAndRenderPokemons();
+  } else {
+    // Or → fetch a specific pokemon by its name
+    fetch(`${path}/${query}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Pokémon not found');
+        return res.json();
+      })
+      .then(data => renderPokemons([data]))
+      .catch(err => {
+        console.error(err);
+        alert('Pokémon not found. Check the name!');
+      });
+  }
+
+  searchForm.reset(); // Clean the field
+});
