@@ -95,11 +95,14 @@ function renderPokedex() {
     cardInner.addEventListener('click', (e) => {
       if (e.target.tagName.toLowerCase() === 'textarea') return;
 
-      // Temporarily disable tilt
-      tiltElement.vanillaTilt.destroy();
+      // Flip the card
       cardInner.classList.toggle('flipped');
 
-      // Re-enable after animation
+      // Temporarily disable tilt on flip
+      tiltElement.vanillaTilt.destroy();
+
+      // Re-enable with gyroscope only if not flipped
+      const enableGyro = !cardInner.classList.contains('flipped');
       setTimeout(() => {
         VanillaTilt.init(tiltElement, {
           max: 15,
@@ -107,7 +110,7 @@ function renderPokedex() {
           glare: true,
           "max-glare": 0.75,
           easing: "cubic-bezier(.03,.98,.52,.99)",
-          gyroscope: true,
+          gyroscope: enableGyro,
           reverse: true,
           perspective: 2000,
         });
