@@ -37,25 +37,6 @@
   z-index: 1;
 }
 
-/* .tilt-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url('../images/holo-dank2.webp');
-  background-size: cover;
-  background-repeat: repeat;
-  mix-blend-mode: overlay;
-  opacity: 0.35;
-  filter: brightness(2) contrast(1.5) saturate(2.5);
-  transform: translateZ(5px);
-  border-radius: inherit;
-} */
-
-/* .zoom-wrapper {
-    transform: scale(0.95);
-} */
-
 .zoom-wrapper.zoomed {
     position: fixed;
     top: 50%;
@@ -142,9 +123,8 @@
   position: absolute;
   inset: -20%;
   background: url('../images/holo-dank2.webp') center/cover no-repeat;
-  animation: spin 20s linear infinite;
   pointer-events: none;
   animation: holo-spin 40s linear infinite;
   mix-blend-mode: color-dodge;
-  overflow: visible;
+  overflow: hidden;
 }
