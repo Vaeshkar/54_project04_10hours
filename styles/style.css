@@ -9,10 +9,10 @@
 
 @keyframes holo-spin {
   from {
-    transform: translate3d(-30px, 45px, -50px) scale(1.2) rotate(0deg);
+    transform: scale(1.5) rotate(0deg);
   }
   to {
-    transform: translate3d(-30px, 45px, -50px) scale(1.2) rotate(360deg);
+    transform: scale(1.5) rotate(360deg);
   }
 }
 
@@ -34,27 +34,8 @@
   border: 1px solid rgba(0, 0, 0, 0.20); 
   border-radius: 1.5rem;
   pointer-events: none;
-  z-index: 1;
+  z-index: 5;
 }
-
-/* .tilt-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url('../images/holo-dank2.webp');
-  background-size: cover;
-  background-repeat: repeat;
-  mix-blend-mode: overlay;
-  opacity: 0.35;
-  filter: brightness(2) contrast(1.5) saturate(2.5);
-  transform: translateZ(5px);
-  border-radius: inherit;
-} */
-
-/* .zoom-wrapper {
-    transform: scale(0.95);
-} */
 
 .zoom-wrapper.zoomed {
     position: fixed;
@@ -135,6 +116,9 @@
 
 .card-back {
   transform: rotateY(180deg);
+  overflow: hidden; 
+  border-radius: 1.5rem; 
+  position: relative;
 }
 
 .card-back-glare::before {
@@ -142,9 +126,8 @@
   position: absolute;
   inset: -20%;
   background: url('../images/holo-dank2.webp') center/cover no-repeat;
-  animation: spin 20s linear infinite;
   pointer-events: none;
   animation: holo-spin 40s linear infinite;
   mix-blend-mode: color-dodge;
-  overflow: visible;
+  border-radius: inherit; 
 }
