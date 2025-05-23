@@ -154,7 +154,7 @@ function renderPokemons(pokemonArray) {
       document.body.appendChild(clone);
       const zoomInner = clone.querySelector('[style*="translateZ"]');
       if (zoomInner) {
-        zoomInner.style.transform = `translateZ(${translateZValue * 6}px)`;
+        zoomInner.style.transform = `translateZ(${translateZValue * 4}px)`;
       }
       const catchButton = clone.querySelector('.catch-button');
       if (catchButton) {
