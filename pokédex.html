@@ -24,9 +24,19 @@
       <main class="max-w-[1000px] w-full m-auto mb-4">
         <div class="container mx-auto flex items-center justify-center">
           <div class="bg-white p-9 rounded-lg shadow-md w-full flex flex-col items-center">
-            <h1 class="text-2xl text-center font-bold text-gray-800 mb-4">
+            <h1 class="text-2xl md:text-4xl text-center font-bold pokemon-blue mb-4">
               Welcome to your Pokédex Page
             </h1>
+                      <div class="w-full mb-4 flex flex-col items-center justify-center">
+            <button id="toggle-help" class="font-semibold text-blue-700 hover:underline focus:outline-none">
+              📘 How to use this page
+            </button>
+            <div id="help-text" class="hidden copy text-center text-sm text-gray-600 m-4 max-w-xl">
+                <p>Use the search bar to find specific Pokémon.</p> 
+                <p>Click a card to flip it and write your personal note on the back.</p> 
+                <p>Use the Poké Ball icon to release a Pokémon from your collection.</p>
+            </div>
+          </div>
             <ul id="todo-list" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4"></ul>
           </div>
         </div>
