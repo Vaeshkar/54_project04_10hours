@@ -90,10 +90,28 @@ function renderPokedex() {
 
     // Toggle flip on card-inner click
     const cardInner = li.querySelector('.card-inner');
+    const tiltElement = li.querySelector('.tilt-card');
+
     cardInner.addEventListener('click', (e) => {
-      // Prevent flip when clicking inside textarea
       if (e.target.tagName.toLowerCase() === 'textarea') return;
+
+      // Temporarily disable tilt
+      tiltElement.vanillaTilt.destroy();
       cardInner.classList.toggle('flipped');
+
+      // Re-enable after animation
+      setTimeout(() => {
+        VanillaTilt.init(tiltElement, {
+          max: 15,
+          speed: 200,
+          glare: true,
+          "max-glare": 0.75,
+          easing: "cubic-bezier(.03,.98,.52,.99)",
+          gyroscope: true,
+          reverse: true,
+          perspective: 2000,
+        });
+      }, 500); // Matches transition duration
     });
 
     // Note saving
