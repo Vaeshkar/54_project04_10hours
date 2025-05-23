@@ -4,6 +4,7 @@ const ul = document.getElementById('todo-list');
 const path = 'https://pokeapi.co/api/v2/pokemon';
 // Pokemon ID
 let pokeId = 1;
+let translateZValue = 8;
 
 // Pokemon BG-Colors by element power.
 const typeColors = {
@@ -64,7 +65,7 @@ function renderPokemons(pokemonArray) {
       <div class="zoom-wrapper cursor-pointer">
         <div class="tilt-card p-1 rounded-xl w-[285px] h-[400px] overflow-visible shadow-md relative" style="${bgStyle}; border: 12px solid #ffcc00; border-radius: 1.5rem; transform-style: preserve-3d;">
           <div class="grain-glitter-layer absolute inset-0 pointer-events-none z-0 rounded-xl"></div>
-          <div style="background-color: rgba(255, 255, 255, 0.25); transform: translateZ(8px);" class="rounded-lg w-full h-full p-4 flex flex-col items-center text-center shadow-lg relative" >
+              <div style="background-color: rgba(255, 255, 255, 0.25); transform: translateZ(${translateZValue}px);" class="rounded-lg w-full h-full p-4 flex flex-col items-center text-center shadow-lg relative" >
               <button class="catch-button absolute top-1 right-1 text-black text-xs font-bold px-1 py-1 z-2 flex flex-col items-center gap-0.5 cursor-pointer hover:scale-115 transform transition-all">
                 <img src="./images/pokeball_icon.png" alt="Poké Ball" class="w-8 h-8" />
                 Catch
@@ -151,6 +152,10 @@ function renderPokemons(pokemonArray) {
       clone.style.zIndex = '999';
 
       document.body.appendChild(clone);
+      const zoomInner = clone.querySelector('[style*="translateZ"]');
+      if (zoomInner) {
+        zoomInner.style.transform = `translateZ(${translateZValue * 6}px)`;
+      }
       const catchButton = clone.querySelector('.catch-button');
       if (catchButton) {
         catchButton.addEventListener('click', (e) => {
@@ -257,4 +262,22 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('toggle-help').addEventListener('click', () => {
   const help = document.getElementById('help-text');
   help.classList.toggle('hidden');
+});
+
+// Gyroscope permission request handler
+document.getElementById('enable-gyro').addEventListener('click', async () => {
+  if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+    try {
+      const response = await DeviceMotionEvent.requestPermission();
+      if (response === 'granted') {
+        alert("Gyroscope enabled!");
+      } else {
+        alert("Permission denied.");
+      }
+    } catch (e) {
+      console.error("Gyroscope permission error:", e);
+    }
+  } else {
+    alert("Your device or browser does not support motion permissions.");
+  }
 });
