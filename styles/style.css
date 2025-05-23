@@ -28,7 +28,7 @@
   z-index: 1;
 }
 
-.tilt-card::before {
+/* .tilt-card::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -37,12 +37,11 @@
   background-size: cover;
   background-repeat: repeat;
   mix-blend-mode: overlay;
-  opacity: 0.45;
+  opacity: 0.35;
   filter: brightness(2) contrast(1.5) saturate(2.5);
-  transform: translateZ(8px);
-  /* z-index: 10; */
+  transform: translateZ(5px);
   border-radius: inherit;
-}
+} */
 
 /* .zoom-wrapper {
     transform: scale(0.95);
@@ -59,26 +58,13 @@
 }
 
 .grain-glitter-layer {
-    background-image: url('../images/glitter.png'), url('../images/grain.webp');
+    background-image: url('../images/grain.webp'), url('../images/holo-dank2.webp');
     background-size: 100%, cover;
     background-repeat: repeat;
     background-blend-mode: screen, overlay;
-    opacity: 0.15;
+    opacity: 0.25;
     filter: brightness(1.1) contrast(1.2);
 }
-
-/* .extra-glitter-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 20;
-  border-radius: 0.75rem;
-  background-image: url('../images/holo-dank2.jpeg');
-  background-size: cover;
-  mix-blend-mode: none;
-  opacity: 0.7;
-  filter: brightness(1.5) contrast(1.2) saturate(1.8);
-} */
 
 #app:before {
     content: "";
@@ -97,6 +83,7 @@
 }
 
 .inactive {
+
     color: rgba(59, 76, 202, 0.4);
     font-weight: 700;
     padding: 1rem 2rem;
