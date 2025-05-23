@@ -7,12 +7,12 @@
 .bg-gray-300 { background-color: #d1d5db; }
 .hover\:bg-gray-300:hover {         background-color: #d1d5db; }
 
-@keyframes slow-rotate {
-  0% {
-    transform: rotate(0deg);
+@keyframes holo-spin {
+  from {
+    transform: translate3d(-30px, 45px, -50px) scale(1.2) rotate(0deg);
   }
-  100% {
-    transform: rotate(360deg);
+  to {
+    transform: translate3d(-30px, 45px, -50px) scale(1.2) rotate(360deg);
   }
 }
 
@@ -143,9 +143,8 @@
   inset: -20%;
   background: url('../images/holo-dank2.webp') center/cover no-repeat;
   animation: spin 20s linear infinite;
-  transform: translate3d(0, 0, -50px);
   pointer-events: none;
-  animation: slow-rotate 40s linear infinite;
+  animation: holo-spin 40s linear infinite;
   mix-blend-mode: color-dodge;
   overflow: visible;
 }
