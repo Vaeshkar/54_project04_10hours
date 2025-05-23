@@ -75,6 +75,7 @@ This project uses the following libraries and APIs:
 
 ## Changelog
 
+- Added 'How to' collapsible section with a click function
 - Small TailwindCSS class updates for Mobile
 - Made Pokémon cards flippable on click to reveal a note-taking back side styled with a TCG card image.
 - Persisted personal notes per Pokémon in localStorage, synced with card back textarea.

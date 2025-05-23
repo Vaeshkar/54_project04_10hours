@@ -124,3 +124,9 @@ function renderPokedex() {
 
   });
 }
+
+// collapse function for 'How to'
+document.getElementById('toggle-help').addEventListener('click', () => {
+  const help = document.getElementById('help-text');
+  help.classList.toggle('hidden');
+});
