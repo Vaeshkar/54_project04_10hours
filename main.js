@@ -28,6 +28,51 @@ const typeColors = {
   fairy: '#D685AD',
 };
 
+// Function: resetFetchButtonStyle (self explanatory)
+function resetFetchButtonStyle() {
+  button.disabled = false;
+  button.classList.remove('bg-gray-300', 'hover:bg-gray-300');
+  button.classList.add('bg-pokemon-yellow', 'hover:bg-pokemon-orange');
+}
+
+// Function: replyTiltEffect (makes the cards move on the mouse event)
+// source: 
+// https://micku7zu.github.io/vanilla-tilt.js/
+function applyTiltEffect(elements) {
+  VanillaTilt.init(elements, {
+    max: 15,
+    speed: 200,
+    glare: true,
+    "max-glare": 0.75,
+    easing: "cubic-bezier(.03,.98,.52,.99)",
+    gyroscope: true,
+    reverse: true,
+    perspective: 2000,
+  });
+}
+
+// Function: catchPokemon (saves slimData on the localStorage)
+function catchPokemon(data) {
+  const caught = JSON.parse(localStorage.getItem('caughtPokemons')) || [];
+  const alreadyCaught = caught.find(p => p.id === data.id);
+  if (!alreadyCaught) {
+    caught.push({
+      id: data.id,
+      name: data.name,
+      image: data.sprites.other["official-artwork"].front_default,
+      types: data.types.map(t => t.type.name),
+      stats: data.stats.map(stat => ({
+        name: stat.stat.name,
+        value: stat.base_stat
+      }))
+    });
+    localStorage.setItem('caughtPokemons', JSON.stringify(caught));
+    alert(`${data.name} was added to your Pokédex!`);
+  } else {
+    alert(`${data.name} is already in your Pokédex.`);
+  }
+}
+
 // Function: LimitInput (change the limit and press enter to start)
 const limitInput = document.getElementById('poke-limit');
 limitInput.addEventListener('keydown', (e) => {
@@ -37,8 +82,11 @@ limitInput.addEventListener('keydown', (e) => {
   }
 });
 
+// Function: renderPokemons (generates the Pokemon grid, set to the input limit)
+// Info: Very large innerHTML for making the pokemon cards look good via JS. 
 function renderPokemons(pokemonArray) {
   // Clear previous, for testing mode
+  // Still have it active. 
   ul.innerHTML = '';
 
   pokemonArray.forEach(data => {
@@ -93,44 +141,20 @@ function renderPokemons(pokemonArray) {
     `;
     // add the cards
     ul.appendChild(li);
-    
+    // Click Event
     li.querySelector('.catch-button').addEventListener('click', () => {
-      const caught = JSON.parse(localStorage.getItem('caughtPokemons')) || [];
-      const alreadyCaught = caught.find(p => p.id === data.id);
-      if (!alreadyCaught) {
-        caught.push({
-          id: data.id,
-          name: data.name,
-          image: data.sprites.other["official-artwork"].front_default,
-          types: data.types.map(t => t.type.name),
-          stats: data.stats.map(stat => ({
-            name: stat.stat.name,
-            value: stat.base_stat
-          }))
-        });
-        localStorage.setItem('caughtPokemons', JSON.stringify(caught));
-        alert(`${data.name} was added to your Pokédex!`);
-      } else {
-        alert(`${data.name} is already in your Pokédex.`);
-      }
+      catchPokemon(data);
     });
 
     // Card titling
-    // source: 
-    // https://micku7zu.github.io/vanilla-tilt.js/
-    VanillaTilt.init(li.querySelectorAll(".tilt-card"), {
-      max: 15,
-      speed: 200,
-      glare: true,
-      "max-glare": 0.75,
-      easing: "cubic-bezier(.03,.98,.52,.99)",
-      gyroscope: true,
-      reverse: true,
-      perspective: 2000,
-    });
+    applyTiltEffect(li.querySelectorAll(".tilt-card"));
 
+    // DOM Grab
     const wrapper = li.querySelector('.zoom-wrapper');
 
+    // Click Event
+    // Source: https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation
+    // Variations: preventDefault() or stopImmediateProgastion()
     wrapper.addEventListener('click', (e) => {
       e.stopPropagation();
 
@@ -138,6 +162,7 @@ function renderPokemons(pokemonArray) {
       const existingZoom = document.querySelector('.zoom-clone');
       if (existingZoom) existingZoom.remove();
 
+      // Builds the new clone
       const rect = wrapper.getBoundingClientRect();
       const clone = wrapper.cloneNode(true);
       clone.classList.add('zoom-clone');
@@ -150,34 +175,24 @@ function renderPokemons(pokemonArray) {
       clone.style.transformOrigin = 'center center';
       clone.style.transition = 'transform 0.3s ease, top 0.3s ease, left 0.3s ease';
       clone.style.zIndex = '999';
-
+      // Adds the new clone
       document.body.appendChild(clone);
+      // Click Event
+      clone.addEventListener('click', (event) => {
+        event.stopPropagation();
+        clone.remove();
+      });
+      // Increase the translateZ for the zoomed cards, for a more dept effect
       const zoomInner = clone.querySelector('[style*="translateZ"]');
       if (zoomInner) {
         zoomInner.style.transform = `translateZ(${translateZValue * 4}px)`;
       }
+      // reactivate the catch button
       const catchButton = clone.querySelector('.catch-button');
       if (catchButton) {
         catchButton.addEventListener('click', (e) => {
           e.stopPropagation();
-          const caught = JSON.parse(localStorage.getItem('caughtPokemons')) || [];
-          const alreadyCaught = caught.find(p => p.id === data.id);
-          if (!alreadyCaught) {
-            caught.push({
-              id: data.id,
-              name: data.name,
-              image: data.sprites.other["official-artwork"].front_default,
-              types: data.types.map(t => t.type.name),
-              stats: data.stats.map(stat => ({
-                name: stat.stat.name,
-                value: stat.base_stat
-              }))
-            });
-            localStorage.setItem('caughtPokemons', JSON.stringify(caught));
-            alert(`${data.name} was added to your Pokédex!`);
-          } else {
-            alert(`${data.name} is already in your Pokédex.`);
-          }
+          catchPokemon(data);
         });
       }
 
@@ -187,29 +202,21 @@ function renderPokemons(pokemonArray) {
 
       const closeZoom = (event) => {
         if (!clone.contains(event.target)) {
-          clone.remove();
+          clone.style.transform = 'scale(1)';
+          setTimeout(() => {
+            clone.remove();
+          }, 300); // match the transition duration
           document.removeEventListener('click', closeZoom);
         }
       };
 
       document.addEventListener('click', closeZoom);
 
-      VanillaTilt.init(clone.querySelectorAll(".tilt-card"), {
-        max: 15,
-        speed: 200,
-        glare: true,
-        "max-glare": 0.75,
-        easing: "cubic-bezier(.03,.98,.52,.99)",
-        gyroscope: true,
-        reverse: true,
-        perspective: 2000,
-      });
+      applyTiltEffect(clone.querySelectorAll(".tilt-card"));
     });
   });
 
-  button.disabled = false;
-  button.classList.remove('bg-gray-300', 'hover:bg-gray-300');
-  button.classList.add('bg-pokemon-yellow', 'hover:bg-pokemon-orange');
+  resetFetchButtonStyle();
 }
 
 function fetchAndRenderPokemons() {
@@ -227,7 +234,7 @@ function fetchAndRenderPokemons() {
       return res.json();
     })
     .then(() => {
-      const maxId = 1017;
+      const maxId = 1302; // Max Pokemons from https://pokeapi.co/ – Timestamp: 03.2025
       const requests = [];
       for (let i = 0; i < limit; i++) {
         const randomId = Math.floor(Math.random() * maxId) + 1;
@@ -236,12 +243,27 @@ function fetchAndRenderPokemons() {
       return Promise.all(requests);
     })
     .then((pokemonArray) => {
-      localStorage.setItem('lastFetchedPokemons', JSON.stringify(pokemonArray));
-      renderPokemons(pokemonArray);
+      // source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+      const filtered = pokemonArray.filter(p => p && p.sprites?.other?.["official-artwork"]?.front_default);
+      const slimData = filtered.map(p => ({
+        id: p.id,
+        name: p.name,
+        types: p.types,
+        stats: p.stats,
+        sprites: {
+          other: {
+            "official-artwork": {
+              front_default: p.sprites.other["official-artwork"].front_default
+            }
+          }
+        }
+      }));
+      localStorage.setItem('lastFetchedPokemons', JSON.stringify(slimData));
+      renderPokemons(slimData);
     })
     .catch((err) => {
       console.error(err);
-      button.disabled = false;
+      resetFetchButtonStyle();
     });
 }
 
