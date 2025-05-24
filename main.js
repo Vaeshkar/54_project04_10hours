@@ -282,7 +282,7 @@ document.getElementById('enable-gyro').addEventListener('click', async () => {
   }
 });
 
-// Activer le formulaire de recherche
+// Triggering the research formular
 const searchForm = document.getElementById('fetch-form');
 searchForm.classList.remove('cursor-not-allowed');
 searchForm.querySelector('input').classList.remove('cursor-not-allowed');
