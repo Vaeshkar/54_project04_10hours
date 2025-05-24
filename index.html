@@ -1,77 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="./images/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="./images/favicon.svg" />
-    <link rel="shortcut icon" href="./images/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href=./images/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
-    <link rel="manifest" href="./images/site.webmanifest" />
-    <title>🐭⚡ Pokédex Diary</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="./styles/style.css">
-  </head>
-  <body id="home" class="w-full m-auto bg-pokemon-darkblue">
-    <header class="max-w-[1000px] m-auto flex flex-col md:flex-row justify-between items-center gap-4 bg-white mb-5 rounded-b-lg p-6">
-        <nav class="flex flex-col md:flex-row justify-center items-center gap-4">
-          <a class="active transform transition-transform duration-300 hover:scale-105" href="#home" target="_self">🐭⚡ Pokédex Diary</a>
-          <a class="inactive transform transition-transform duration-300 hover:scale-105" href="./pokédex.html">🦊⚡ Pokédex</a>
-        </nav>
-        <div class="opacity-50 cursor-not-allowed search-container flex items-center border-2 rounded-full">
-          <form id="fetch-form" class="cursor-not-allowed px-4">
-            <input class="cursor-not-allowed" type="text" placeholder="Search for Pokémon..." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
-        </div>
-    </header>
-    <main class="max-w-[1000px] w-full m-auto">
-      <div class="container mx-auto flex flex-col items-center">
-        <div
-          class="bg-white p-9 rounded-lg shadow-md w-full flex flex-col items-center">
-          <h1 class="text-2xl md:text-4xl text-center font-bold pokemon-blue mb-4">
-            Welcome to our project using Pokémon APIs
-          </h1>
-          <div class="w-full mb-4 flex flex-col items-center justify-center">
-            <button id="toggle-help" class="font-semibold text-blue-700 hover:underline focus:outline-none">
-              📘 How to use this page
-            </button>
-            <div id="help-text" class="hidden copy text-center text-sm text-gray-600 m-4 max-w-xl">
-            <button id="enable-gyro" class="mt-2 bg-pokemon-blue text-white no-underline text-sm rounded-full px-4 py-2 dekoration-none cursor-pointer">
-              Enable Motion Effects (for iOS)
-            </button>
-              <p class="opacity-50 cursor-not-allowed">Use the search bar to find specific Pokémon.</p> 
-              <p>Use the input field to choose how many Pokémon to fetch. Press Enter.</p> 
-              <p>Click "Catch'em all" to load cards.</p>    
-              <p>Click a card to enlarge it and use the Poké Ball icon to add it to your Pokédex.</p>
-            </div>
-          </div>
-          <input
-            id="poke-limit"
-            type="number"
-            min="1"
-            max="151"
-            value="12"
-            class="border-2 mb-4 p-2 rounded-full text-center w-full"
-            placeholder="How many Pokémon?" />
-          <button
-            id="fetch-poke"
-            class="bg-green-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded w-full mb-4 cursor-pointer transform transition-transform duration-300 hover:scale-103">
-            Catch'em all
-          </button>
-          <ul id="todo-list" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4"></ul>
-        </div>
-      </div>
-    </main>
-    <footer class="max-w-[1000px] w-full bg-white rounded-t-lg m-auto mt-4 p-6">
-      <div class="wrapper flex flex-col text-center gap-2">
-        <p>&copy; 2025 – <a class="" href="./index.html" target="_self">🐭⚡ Pokédex Diary</a> / <a class="" href="https://wbscodingschool.com/" target="_blank">WBS Coding School</a> – Project 04</p>
-        <p>Made with ❤️ and by hand from: <a class="pokemon-blue" href="https://github.com/ChaOscDelEch" target="_blank">Julien</a> and <a class="pokemon-blue" href="http://github.com/Vaeshkar" target="_blank">Dennis</a>.</p>
-      </div>
-    </footer>
-    <script src="./main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.3/dist/vanilla-tilt.min.js"></script>
-    <div id="app"></div>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>console_test</title>
+</head>
+<body>
+    <p>run the code from the console, for debugging purposes.</p>
+</body>
 </html>

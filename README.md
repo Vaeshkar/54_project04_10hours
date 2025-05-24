@@ -1,113 +1,104 @@
+# 41_project03_10hours# 41_project03_10hours
 
+## ✨ Project Overview
+This solo project consists of three command-line Node.js applications:
 
-# 🐭⚡ Pokédex Diary
-
-A collaborative web application project built by Dennis and Julien from the WBS Coding School Software Engineering Class 01. The project utilizes modern web APIs, TailwindCSS, and local storage to create a Pokédex diary where users can explore, catch, and add notes to their favorite Pokémon.
-
----
-
-## 🚀 Project Overview
-
-This project involves building a Pokédex Diary web app using the PokéAPI. Users can browse Pokémon, search by name or ID, catch them to save in their local Pokédex, and add personal notes to each one.
+1. **Rock Paper Scissors** – A terminal game where you play against the computer.
+2. **Pig Latin Translator** – Translates English phrases to Pig Latin based on simple linguistic rules.
+3. **Caesar Cipher** – Encrypts a phrase using the Caesar cipher method with positive or negative shifts.
 
 ---
 
-## 📁 File Structure
-
-This project consists of two HTML pages:
-
-- `index.html` – linked with `main.js`
-- `pokedex.html` – linked with `pokedex.js`
+## 📆 Duration
+- **Full Time**: 5 Days  
 
 ---
 
-## 🌐 Functional Requirements
+## 🚀 Requirements Summary
+### FR001 – Solo Project
+You must work independently. Collaboration is not allowed.
 
-### Shared Requirements
+### FR002 – Public GitHub Repository
+- Keep the repository public.
+- Do not add instructors as collaborators.
 
-| ID      | Requirement                          | Description                                                        |
-|---------|--------------------------------------|--------------------------------------------------------------------|
-| FR001   | Group Project                        | Work collaboratively; all members share responsibility.            |
-| FR002   | Follow Group‑Work Guidelines         | Adhere to the bootcamp’s group‑work best‑practices.                |
-| FR003   | Public GitHub Repository             | Store all code in a single public repo; do not add instructors.    |
-| FR004   | Incremental Development with PRs     | Merge every change into main via Pull Requests.                    |
-| FR005   | Core Web APIs Usage                  | Demonstrate DOM, Web Storage, and Fetch APIs.                      |
-| FR006   | TailwindCSS Styling                  | Style the application exclusively with TailwindCSS.                |
+### FR003 – Incremental Development
+- All updates to the `main` branch must be done via Pull Requests only.
 
-### Pokédex Diary Requirements
+### FR004 – Presentation
+- Present the code to your peers and instructor.
+- Walk through your code **line by line**.
 
-| ID      | Requirement               | Description                                                                 |
-|---------|---------------------------|-----------------------------------------------------------------------------|
-| FR007   | File Structure            | Two pages: `index.html` ↔ `main.js`, `pokedex.html` ↔ `pokedex.js`         |
-| FR008   | Navigation Bar            | Navbar on both pages to switch between Homepage and Pokédex                |
-| FR009   | Fetch Pokémon List        | On Homepage, fetch and display a list of Pokémon from the PokéAPI         |
-| FR010   | Search with Dialog        | Search by name or ID, show results/feedback in a dialog                    |
-| FR011   | Pokémon Cards             | Display each Pokémon’s image, name, and stats in a card                    |
-| FR012   | Catch’em!                 | “Catch” button stores the Pokémon as an object in localStorage            |
-| FR013   | Pokédex Page Display      | Pokédex page lists caught Pokémon from localStorage                        |
-| FR014   | Personal Notes            | Allow adding notes per Pokémon; persist in localStorage                    |
+### FR005 – Rock Paper Scissors
+- Input: `process.argv` (e.g., `node rockPaperScissors.js rock`)
+- The computer randomly selects rock, paper, or scissors
+- Output result: win, lose, or draw
 
----
+### FR006 – Pig Latin Translator
+- Input: `process.argv` (e.g., `node pigLatin.js "Pig Latin is fun"`)
+- Converts each word based on rules:
+  - Starts with vowel → add "way"
+  - Starts with consonant + vowel → move first letter to end + "ay"
+  - Starts with 2 consonants → move both to end + "ay"
 
-## 💡 Tips for Effective Planning
-
-- **Daily stand-ups**: Use them to keep your instructor informed and share insights with peers.
-- **Stay organized**: Create your own Trello board or planning tool.
-- **Ask for help**: If you're stuck for more than 30 minutes, reach out!
+### FR007 – Caesar Cipher
+- Input: Phrase + Shift value from `process.argv`
+- Output: Encrypted phrase
+- Supports positive (right shift) and negative (left shift) values
 
 ---
 
-## 👥 Contributors
-
-- Dennis – WBS Software Engineering Class 01
-- Julien – WBS Software Engineering Class 01
-
-## 📦 Dependencies
-
-This project uses the following libraries and APIs:
-
-- [TailwindCSS](https://tailwindcss.com/) – Utility-first CSS framework for styling.
-- [VanillaTilt.js](https://micku7zu.github.io/vanilla-tilt.js/) – Adds 3D tilt and glare effects to cards.
-- [PokéAPI](https://pokeapi.co/) – Public API for Pokémon data.
-- [DOM API](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) – For dynamic rendering and interactions.
-- [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) – For saving caught Pokémon and notes in localStorage.
-- [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) – To retrieve data from PokéAPI.
+## 📊 File Structure
+41_project03_10hours/
+├── rockPaperScissors.js
+├── pigLatin.js
+├── caesarCipher.js
+└── README.md
 
 ---
 
-## 📝 Changelog
+## 🔧 How to Run Each Program
+node rockPaperScissors.js rock
+node pigLatin.js "This is fun"
+node caesarCipher.js "hello world" 3
 
-- Added a Favicon
-- Added disko on the backcard: rotating glitter
-- Refactored pokedex card rendering into `renderPokedexCard(pokemon)` for modularity.
-- Centralized Pokémon type color logic with shared `getPokemonColors()` helper function.
-- Slimmed down stored Pokémon data using only essential fields (id, name, image, types, stats), enabling storage of all 1302 Pokémon under 2.5MB localStorage budget.
-- Added 'How to' collapsible section with a click function
-- Small TailwindCSS class updates for Mobile
-- Made Pokémon cards flippable on click to reveal a note-taking back side styled with a TCG card image.
-- Persisted personal notes per Pokémon in localStorage, synced with card back textarea.
-- Prevented accidental card flip when interacting with note fields using event bubbling guards.
-- Integrated Poké Ball glare overlay on card backs using layered blend mode styling.
-- Adjusted card flip logic for more intuitive interaction without hover triggers.
-- Restructured layout with `flex-grow` containers to keep footer anchored at the bottom.
-- Tuned background glare effect to remain subtle and not obscure card art.
-- Updated the Grid design and card positions
-- Applied gradient-clipped text styling with shadow overlays to Pokémon names and stats for visual emphasis.
-- Colored type badges with full Pokémon type color and black border for clarity and contrast.
-- Added a darker gradient background to the stats section for improved readability.
-- Final visual tuning with layered effects, shadows, and color cohesion for card polish.
-- Integrated glitter and grain texture overlay using separate CSS background layers.
-- Moved inline body background styles into external `style.css` for cleaner control.
-- Tuned glitter/grain effect visibility with adjusted opacity and filter values.
-- Added click-to-zoom effect for Pokémon cards with smooth scaling and tilt preservation.
-- Improved zoom transition by scaling cards from their original position using `getBoundingClientRect`.
-- Introduced solid white background behind card content to prevent layering and transparency issues.
-- Enabled pressing Enter in the input field to trigger fetch.
-- Added pointer cursor on hover to indicate card interactivity.
-- Applied subtle drop shadow to all Pokémon cards for visual depth.
-- Dennis and Julien implemented dynamic card rendering using the PokéAPI.
-- Introduced randomized Pokémon fetch with visual styling based on type.
-- Added 3D parallax tilt effect with layered `translateZ` visuals.
-- Refined card layout with strict sizing and responsive grid structure.
-- Julien Started with the 2xHTML and 2xJS files
-- Dennis Started making the Git Repo and invite Julien
+---
+
+🎤 Final Presentation
+You will be expected to:
+	•	Present each program
+	•	Walk through code line-by-line
+	•	Explain your logic, structure, and decisions
+
+---
+
+📚 License
+This project is created as part of WBS Coding School curriculum.
+
+---
+
+💬 Questions?
+Open an issue on this repo if you have questions, or talk to your instructor during check-ins! Let me know if you’d like a version with Markdown preview styling or emojis trimmed!
+
+---
+
+## ✅ Project Completion Checklist
+
+All required exercises have been completed with guidance:
+
+- [x] Rock Paper Scissors (FR005)
+- [x] Pig Latin Translator (FR006)
+- [x] Caesar Cipher (FR007)
+
+> These exercises were completed with Online Searches and Articles, but every step was understood and implemented personally.
+> ⚠️ **Note:** All work was completed on a single branch. Future projects will follow best practices by creating separate branches for each feature and merging them via Pull Requests.
+
+---
+
+## 🧠 Reflections & Notes
+
+- Practiced advanced JavaScript string manipulation and logic  
+- Learned about character codes and modular arithmetic (Caesar Cipher)  
+- Explored different ways to loop and transform data (`forEach`, `map`)  
+- Understood how to identify and handle user input from `process.argv`  
+- Gained confidence in using regular expressions to detect letters  
