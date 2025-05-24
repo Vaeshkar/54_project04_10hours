@@ -127,7 +127,7 @@
   inset: -20%;
   background: url('../images/holo-dank2.webp') center/cover no-repeat;
   pointer-events: none;
-  animation: holo-spin 40s linear infinite;
+  animation: holo-spin 120s linear infinite;
   mix-blend-mode: color-dodge;
   border-radius: inherit; 
 }
