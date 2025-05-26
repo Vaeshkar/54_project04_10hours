@@ -1,41 +1,11 @@
+import * as utils from './utils/utils.js';
+
 // Wait till the page is loaded, gives us the pokedexGrid and Cards
 window.addEventListener('DOMContentLoaded', renderPokedex);
 
-// Pokemon BG-Colors by element power.
-const typeColors = {
-  normal: '#A8A77A',
-  fire: '#EE8130',
-  water: '#6390F0',
-  electric: '#F7D02C',
-  grass: '#7AC74C',
-  ice: '#96D9D6',
-  fighting: '#C22E28',
-  poison: '#A33EA1',
-  ground: '#E2BF65',
-  flying: '#A98FF3',
-  psychic: '#F95587',
-  bug: '#A6B91A',
-  rock: '#B6A136',
-  ghost: '#735797',
-  dragon: '#6F35FC',
-  dark: '#705746',
-  steel: '#B7B7CE',
-  fairy: '#D685AD',
-};
-
-
-// Function: Helper function to get colors and gradient for pokemon types
-function getPokemonColors(types) {
-  const colors = types.map(type => typeColors[type]);
-  const gradient = colors.length === 1
-    ? `background: linear-gradient(135deg, ${colors[0]} 0%, rgba(255, 255, 255, 1) 100%)`
-    : `background: linear-gradient(135deg, ${colors[0]}, ${colors[1]})`;
-  return { colors, gradient };
-}
-
 // Function: renderPokedexCard ()
 function renderPokedexCard(pokemon, pokemons, renderCallback) {
-  const { colors, gradient: bgStyle } = getPokemonColors(pokemon.types);
+  const { colors, gradient: bgStyle } = utils.getPokemonColors(pokemon.types);
 
   const li = document.createElement('li');
   li.innerHTML = `
@@ -53,7 +23,7 @@ function renderPokedexCard(pokemon, pokemons, renderCallback) {
               ${pokemon.name}
             </h2>
             <div class="flex justify-center gap-x-2 gap-y-1 flex-wrap w-full mt-2 mb-2">
-              ${pokemon.types.map(t => `<span class="px-2 py-1 rounded-full text-xs text-black border border-black border-opacity-50" style="background-color: ${typeColors[t]};">${t}</span>`).join('')}
+              ${pokemon.types.map(t => `<span class="px-2 py-1 rounded-full text-xs text-black border border-black border-opacity-50" style="background-color: ${utils.typeColors[t]};">${t}</span>`).join('')}
             </div>
             <div class="text-xs text-left w-full mt-auto" style="background: linear-gradient(135deg, ${colors[0]}, ${colors[1] || colors[0]}); -webkit-background-clip: text; color: transparent; text-shadow: -1px -1px 0 black;">
               ${pokemon.stats.map(stat => `
@@ -133,7 +103,10 @@ function renderPokedex() {
 }
 
 // collapse function for 'How to'
-document.getElementById('toggle-help').addEventListener('click', () => {
-  const help = document.getElementById('help-text');
-  help.classList.toggle('hidden');
-});
+const helpButton = document.getElementById('toggle-help');
+const helpText = document.getElementById('help-text');
+if (helpButton && helpText) {
+  helpButton.addEventListener('click', () => {
+    helpText.classList.toggle('hidden');
+  });
+}

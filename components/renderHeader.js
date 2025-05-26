@@ -1,5 +1,3 @@
-
-
 export function renderHeader() {
   const header = document.createElement('header');
   header.className = 'max-w-[1000px] m-auto flex flex-col md:flex-row justify-between items-center gap-4 bg-white mb-5 rounded-b-lg p-6';

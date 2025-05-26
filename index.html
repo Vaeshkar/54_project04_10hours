@@ -19,10 +19,11 @@
           <a class="active transform transition-transform duration-300 hover:scale-105" href="#home" target="_self">🐭⚡ Pokédex Diary</a>
           <a class="inactive transform transition-transform duration-300 hover:scale-105" href="./pokédex.html">🦊⚡ Pokédex</a>
         </nav>
-        <div class="opacity-50 cursor-not-allowed search-container flex items-center border-2 rounded-full">
-          <form id="fetch-form" class="cursor-not-allowed px-4">
-            <input class="cursor-not-allowed" type="text" placeholder="Search for Pokémon..." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
+        <div class="search-container flex items-center border-2 rounded-full">
+          <form id="fetch-form" class=" px-4">
+            <!-- Searchbar -->
+            <input id="search" value="" class="p-4" type="text" placeholder="Search for Pokémon..." name="search">
+            <button id="searchButton" type="submit"><i class="fa fa-search"></i></button>
           </form>
         </div>
     </header>
@@ -35,18 +36,19 @@
           </h1>
           <div class="w-full mb-4 flex flex-col items-center justify-center">
             <button id="toggle-help" class="font-semibold text-blue-700 hover:underline focus:outline-none">
-              📘 How to use this page
+              📘 How to use this page 
             </button>
             <div id="help-text" class="hidden copy text-center text-sm text-gray-600 m-4 max-w-xl">
             <button id="enable-gyro" class="mt-2 bg-pokemon-blue text-white no-underline text-sm rounded-full px-4 py-2 dekoration-none cursor-pointer">
               Enable Motion Effects (for iOS)
             </button>
-              <p class="opacity-50 cursor-not-allowed">Use the search bar to find specific Pokémon.</p> 
+              <p>Use the search bar to find specific Pokémon.</p> 
               <p>Use the input field to choose how many Pokémon to fetch. Press Enter.</p> 
               <p>Click "Catch'em all" to load cards.</p>    
               <p>Click a card to enlarge it and use the Poké Ball icon to add it to your Pokédex.</p>
             </div>
           </div>
+          <!-- Pokemon Limit bar -->
           <input
             id="poke-limit"
             type="number"
@@ -57,9 +59,15 @@
             placeholder="How many Pokémon?" />
           <button
             id="fetch-poke"
-            class="bg-green-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded w-full mb-4 cursor-pointer transform transition-transform duration-300 hover:scale-103">
+            class="bg-pokemon-yellow hover:bg-[#3b4cca] text-white font-bold py-2 px-4 rounded w-full mb-4 cursor-pointer transform transition-transform duration-300 hover:scale-103">
             Catch'em all
           </button>
+          <button
+            id="clear-results"
+            class="display-block mb-4 self-start bg-gray-200 hover:bg-[#3b4cca] text-black hover:text-white font-semibold py-1 px-4 rounded-full transition duration-200">
+            ❌ Clear Search Results
+          </button>
+          <ul id="search-results" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4"></ul>
           <ul id="todo-list" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4"></ul>
         </div>
       </div>
@@ -70,7 +78,7 @@
         <p>Made with ❤️ and by hand from: <a class="pokemon-blue" href="https://github.com/ChaOscDelEch" target="_blank">Julien</a> and <a class="pokemon-blue" href="http://github.com/Vaeshkar" target="_blank">Dennis</a>.</p>
       </div>
     </footer>
-    <script src="./main.js"></script>
+    <script type="module" src="./main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.3/dist/vanilla-tilt.min.js"></script>
     <div id="app"></div>
   </body>

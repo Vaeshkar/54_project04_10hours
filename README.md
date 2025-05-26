@@ -77,6 +77,13 @@ This project uses the following libraries and APIs:
 
 ## 📝 Changelog
 
+
+- Refactored project structure:
+- Modularized code into `utils.js` for shared logic and styling helpers.
+- Activated search bar for querying by Pokémon name or ID.
+- Merged `search.js` functionality into `main.js` to simplify script loading.
+- Added "❌ Clear Search Results" button above results grid.
+- Unified duplicated render logic into a single `createPokemonCard()` function.
 - Added a Favicon
 - Added disko on the backcard: rotating glitter
 - Refactored pokedex card rendering into `renderPokedexCard(pokemon)` for modularity.

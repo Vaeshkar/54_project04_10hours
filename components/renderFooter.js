@@ -1,5 +1,3 @@
-
-
 export function renderFooter() {
   const footer = document.createElement('footer');
   footer.className = 'max-w-[1000px] w-full bg-white rounded-t-lg m-auto mt-4 p-6';
