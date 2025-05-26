@@ -222,6 +222,7 @@ function renderPokemons(pokemonArray) {
   resetFetchButtonStyle();
 }
 
+// function fetchAndRenderPokemons ( )
 function fetchAndRenderPokemons() {
   button.disabled = true;
   button.classList.remove('bg-pokemon-yellow', 'hover:bg-pokemon-orange');
@@ -290,6 +291,7 @@ document.getElementById('toggle-help').addEventListener('click', () => {
 });
 
 // Gyroscope permission request handler
+// Googled it, code not mine
 document.getElementById('enable-gyro').addEventListener('click', async () => {
   if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
     try {
