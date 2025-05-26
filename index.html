@@ -22,7 +22,7 @@
         <div class="search-container flex items-center border-2 rounded-full">
           <form id="fetch-form" class=" px-4">
             <!-- Searchbar -->
-            <input id="search" value="4" class="p-4" type="text" placeholder="Search for Pokémon..." name="search">
+            <input id="search" value="" class="p-4" type="text" placeholder="Search for Pokémon..." name="search">
             <button id="searchButton" type="submit"><i class="fa fa-search"></i></button>
           </form>
         </div>
@@ -59,9 +59,15 @@
             placeholder="How many Pokémon?" />
           <button
             id="fetch-poke"
-            class="bg-green-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded w-full mb-4 cursor-pointer transform transition-transform duration-300 hover:scale-103">
+            class="bg-pokemon-yellow hover:bg-[#3b4cca] text-white font-bold py-2 px-4 rounded w-full mb-4 cursor-pointer transform transition-transform duration-300 hover:scale-103">
             Catch'em all
           </button>
+          <button
+            id="clear-results"
+            class="display-block mb-4 self-start bg-gray-200 hover:bg-[#3b4cca] text-black hover:text-white font-semibold py-1 px-4 rounded-full transition duration-200">
+            ❌ Clear Search Results
+          </button>
+          <ul id="search-results" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4"></ul>
           <ul id="todo-list" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4"></ul>
         </div>
       </div>
@@ -73,7 +79,6 @@
       </div>
     </footer>
     <script type="module" src="./main.js"></script>
-    <script type="module" src="./search.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.3/dist/vanilla-tilt.min.js"></script>
     <div id="app"></div>
   </body>
