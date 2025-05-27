@@ -6,6 +6,12 @@ A collaborative web application project built by Dennis and Julien from the WBS 
 
 ---
 
+## Live Demo
+
+https://vaeshkar.github.io/54_project04_10hours/
+
+---
+
 ## 🚀 Project Overview
 
 This project involves building a Pokédex Diary web app using the PokéAPI. Users can browse Pokémon, search by name or ID, catch them to save in their local Pokédex, and add personal notes to each one.
