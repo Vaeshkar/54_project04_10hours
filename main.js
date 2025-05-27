@@ -1,3 +1,5 @@
+import * as utils from './utils/utils.js';
+
 // Clear results button logic
 const clearButton = document.getElementById('clear-results');
 if (clearButton) {
@@ -6,7 +8,6 @@ if (clearButton) {
     // utils.ul.innerHTML = '';
   });
 }
-import * as utils from './utils/utils.js';
 
 const searchInput = document.getElementById('search');
 const searchButton = document.getElementById('searchButton');
